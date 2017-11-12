@@ -179,11 +179,11 @@ a {
 }
 
 a:hover {
-	color: #c73430;
+	color: #00b3e1;
 }
 
 a.col1:hover a {
-    color: #c73430;
+    color: #00b3e1;
 }
 
 a.btn {
@@ -198,7 +198,7 @@ a.btn {
 }
 
 a.btn:hover {
-    background-color: #c73430;
+    background-color: #00b3e1;
     color: #fff;
 }
 
