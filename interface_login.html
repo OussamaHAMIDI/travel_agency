@@ -36,11 +36,11 @@
     <form action="#">
         <div align="center">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="login">
+                <input class="mdl-textfield__input" type="text" id="loginF">
                 <label class="mdl-textfield__label" for="sample3">Nom d'utilisateur</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" id="password">
+                <input class="mdl-textfield__input" type="password" id="passwordF">
                 <label class="mdl-textfield__label" for="sample3">Mot de passe</label>
             </div>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
@@ -57,5 +57,38 @@
 
 
 </body>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAj9Uv3V3_foMG7Fv-i2elXDv79VgW3akk",
+    authDomain: "travelagencyback.firebaseapp.com",
+    databaseURL: "https://travelagencyback.firebaseio.com",
+    projectId: "travelagencyback",
+    storageBucket: "travelagencyback.appspot.com",
+    messagingSenderId: "549842225577"
+  };
+  firebase.initializeApp(config);
+   
+    function signin(){
+  const auth = firebase.auth();
+  const loginF = document.getElementById('loginF');
+  const passwordF = document.getElementById('passwordF');
+  console.log(passwordF.value);
+  const promise = auth.signInWithEmailAndPassword(loginF.value,passwordF.value);
+  
+  }
+  
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+ 
+   window.location.href = "interface_admin.html";
+   
+  } else {
+  }
+});	
+  
+</script>
 
 </html>
