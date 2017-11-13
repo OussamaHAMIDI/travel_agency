@@ -1,18 +1,3 @@
-/*!
-* Fancyform - jQuery Plugin
-* Simple and fancy form styling alternative
-*
-* Examples and documentation at: https://github.com/Lutrasoft/Fancyform
-* 
-* Copyright (c) 2010-2013 - Lutrasoft
-* 
-* Version: 1.4.1
-* Requires: jQuery v1.6.1+ 
-*
-* Dual licensed under the MIT and GPL licenses:
-*   http://www.opensource.org/licenses/mit-license.php
-*   http://www.gnu.org/licenses/gpl.html
-*/
 (function ($) {
     $.simpleEllipsis = function (t, c) {
         return t.length < c ? t : t.substring(0, c) + "...";
@@ -23,13 +8,13 @@
 			var _this = $(this),
 				options = _this.data("options") || _this.data("settings"),
 				k;
-				
+
 			for(k in options)
 			{
 				_this.parent().removeClass(k);
 			}
 		};
-	
+
     $.fn.extend({
         /*
         Get the caret on an textarea
@@ -68,7 +53,7 @@
                     if (typeof end != "number") end = -1;
                     if (typeof start != "number" || start < 0) start = 0;
                     if (end > val.length) end = val.length;
-					
+
                     end = Math.max(start, end);
                     start = Math.min(start, end);
 
@@ -127,14 +112,14 @@
                     else {
                         src = "unchecked";
                     }
-					
+
 					if( settings.base == "image" )
 					{
 						cb.next().attr("src", settings[src]);
-                        
+
                         if (cb[0].type == 'radio') {
                             //src=="checked"?cb.next().addClass('checked'):cb.next().removeClass('checked');
-                            
+
                             cb.next().removeAttr('src');
                             src=="checked"?cb.next().addClass('checked').removeClass('unchecked'):cb.next().removeClass('checked').addClass('unchecked');
                         }
@@ -174,7 +159,7 @@
                 imageClick: function () {
                     var _this = $(this),
 						settings = _this.data('settings');
-						
+
                     if (!_this.is(":disabled")) {
                         if (_this.is(":checked") && settings.type) {
 							method.uncheck.call(_this);
@@ -258,7 +243,7 @@
 							   .data("settings", options);
 
 						options.type = _this.is("[type=checkbox]");
-						
+
 						// Radio hide
 						_this.hide();
 
@@ -347,7 +332,7 @@
 
 					// Hide mezelf
                     t.hide();
-					
+
                     if (t.find("option:selected").length && _this.type != "select-multiple") {
                         selectedOption = t.find("option:selected");
                         selectedIndex = t.find("option").index(selectedOption);
@@ -399,7 +384,7 @@
                     t.after($ul);
 
                     $ulul.css('display','block');
-                    
+
                     if ($li.length*$li.height() > parseInt($ulul.css('maxHeight'))) {
                         $ulul.css('overflow-y','scroll');
                     }
@@ -565,7 +550,7 @@
                 */
                 getLIOptionChild: function (option) {
                     var settings = $(option).attr("data-settings") || '',
-						cls = ($(option).attr('class') || '') + 
+						cls = ($(option).attr('class') || '') +
 									($(option).is(":selected") ? ' selected' : '');
 
                     return "<li data-settings='" + settings + "' class='" + cls + "'>" + options.subTemplate.call(this, $(option)) + "</li>";
@@ -624,7 +609,7 @@
 								: options.valueTemplate.call(sel)
 							);
                     }
-					
+
 					// Set selected
 					$drop.find(".checked").removeClass("checked");
 					_this.addClass("checked");
@@ -766,7 +751,7 @@
             }
             return this.each(function () {
 				var _this = $(this);
-				
+
                 // Is already initialized
                 if (!_this.data("tfs.init")) {
                     options = $.extend(defaults, opts);
@@ -789,7 +774,7 @@
         display: inline-block;
         font-size: 12px;
         }
-		
+
         .customInput .inputPath {
         width: 150px;
         padding: 4px;
@@ -802,7 +787,7 @@
         -o-text-overflow: ellipsis;
         text-overflow:    ellipsis;
         }
-		
+
         .customInput .inputButton {
         display: inline-block;
         padding: 4px;
@@ -871,7 +856,7 @@
                     // set initialized
 					$(this).data("tff.init", 1);
 
-					// 
+					//
 					var el = $(this).hide(),
 						id = null,
 						name = el.attr('name'),
@@ -907,7 +892,7 @@
 				    // Init the module
 				    init: function () {
 						var _this = $(this);
-						
+
 				        // This only happens in IE
 				        if (_this.css("line-height") == "normal") {
 				            _this.css("line-height", "12px");
@@ -950,7 +935,7 @@
 							scrollTo = $(this)[0].scrollTop + (parseFloat(lineHeight) * (delta * -1));
 				        method.scrollToPx.call(this, scrollTo);
 				    },
-				    // Used to scroll 
+				    // Used to scroll
 				    keyup: function (e) {
 				        // Check if it has to scroll
 				        // Arrow keys down have to scroll down / up (only if to far)
