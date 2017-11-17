@@ -62,19 +62,13 @@
 <!--==============================Content=================================-->
 		<div class="content"><div class="ic"></div>
 			<div class="container_12">
-				<!--<div class="banners">
-					<div class="grid_4">
-						<div class="banner">
-							<img src="images/page2_img1.jpg" alt=""> ////insert flyer here
-							<div class="label">
-								<div class="title">NEW ZEALAND</div> ////insert destination here
-								<div class="price">from<span>$ 1.200</span></div> ////insert price here
-								<a href="#">LEARN MORE</a> ////insert link to the offer here
-							</div>
-						</div>
-					</div>
+			
+				<div class="banners">
+				<div id="voyages">
+					
 
-				</div>-->
+				</div>
+				</div>
 			</div>
 			<div style="text-align:center"><a href="Contact.html" class="btn">Contactez nous</a></div>
 		</div>
@@ -95,4 +89,35 @@
 			</div>
 		</footer>
 	</body>
+	<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+	<script>
+  // Initialize Firebase
+  var config = {
+		apiKey: "AIzaSyAj9Uv3V3_foMG7Fv-i2elXDv79VgW3akk",
+		authDomain: "travelagencyback.firebaseapp.com",
+		databaseURL: "https://travelagencyback.firebaseio.com",
+		projectId: "travelagencyback",
+		storageBucket: "travelagencyback.appspot.com",
+		messagingSenderId: "549842225577"
+	  };
+	  firebase.initializeApp(config);
+  var voyages="";
+ var dbRef = firebase.database().ref('Travels');
+	/*dbRef.on('value', function(snap){
+	 snap.forEach(function (childSnapshot) {
+		//voyages='<div class="properties-bottom"><div class="properties-img"><img src="'+childSnapshot.child("photo").val()+'" alt=""><div class="view-caption"><h4><span class="glyphicon glyphicon-map-marker"></span>'+ childSnapshot.child("address").val()+'</h4></div><div onClick="map('+childSnapshot.child("longitude").val()+','+childSnapshot.child("latitude").val()+')" class="w3ls-buy"><a href="#">Visit</a></div></div><div class="w3ls-text"><h5><a href="map.html">'+childSnapshot.child("name").val()+'</a></h5><h6>Rating : '+likeCount+'</h6><span id='+key+' onclick="like(this.id)" class="'+iconClass+'" style="margin-top:10px;"></span><span class="glyphicon glyphicon-share-alt" style="margin-top:10px;float:right"></span></div></div> ';
+		//document.getElementById("voyages").innerHTML+=voyages;
+		console.log(childSnapshot.val());	
+		});
+		
+	});*/
+	firebase.database().ref('Travels').on('value',function(snapshot) {
+	document.getElementById("voyages").innerHTML="";
+	snapshot.forEach(function (childSnapshot) {
+		voyages = '<div class="grid_4"><div class="banner"><img src="'+childSnapshot.child('photo').val()+'" alt=""><div class="label"><div class="title">'+childSnapshot.child('title').val()+'</div><div class="price">from<span>'+childSnapshot.child('price').val()+'DT</span></div><a href="#">LEARN MORE</a></div></div></div>';
+		document.getElementById("voyages").innerHTML+=voyages;
+		});
+	});
+	</script>
+  
 </html>
