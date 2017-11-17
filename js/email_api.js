@@ -6,7 +6,7 @@ function submitContact() {
   // and i registered you so you can now receive emails
   var yuki_URL = "http://redcarpet-thegate.herokuapp.com/emails";
   //This is the email i registered you with, you have to notify me before you change it
-  var yuki_target_email = "oussama.hamidi@esprit.tn";
+  var yuki_target_email = "dev@lagence.xyz";
   // this is the content of the email you will receive,
   // Change this if you're not using JQuery :p
   var yuki_email = {
