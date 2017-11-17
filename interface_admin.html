@@ -260,22 +260,22 @@
 		 firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
 			console.log("auth");
-			
-	   
+
+
 			} else {
 			window.location.href = "interface_login.html";
 				}
-			});	
+			});
 			}
-			
+
 			const titre = document.getElementById('titre');
 			const prix = document.getElementById('prix');
 			const description = document.getElementById('description');
 			const image = document.getElementById('image');
 			var downloadL;
-			
-			
-			
+
+
+
 			function upload(){
 			var file = image.files;
 				// Create the file metadata
@@ -313,7 +313,7 @@
 					  // User canceled the upload
 					  break;
 
-					
+
 
 					case 'storage/unknown':
 					  // Unknown error occurred, inspect error.serverResponse
@@ -325,63 +325,40 @@
 				  console.log(downloadURL);
 				  downloadL = downloadURL;
 				});
-						
-			
-			
-			
+
+
+
+
 			}
-			
+
 			image.addEventListener("change", function(event) {
 			upload();
 
 		}, false);
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
+
+
+
 			function addTravel(){
 			dbRef.once('value', function(snap){
-	
+
 			dbRef.child("Travel"+dbRef.push().key).set({
 			userId:firebase.auth().currentUser.uid,
 			title:titre.value,
 			description:description.value,
 			price:prix.value,
 			photo:downloadL,
-			
+
 			})
-	
-    
+
+
 			});
 			}
 			function disconnect (){
 			firebase.auth().signOut();
-			
+
 			}
-			
+
 	</script>
   </body>
 </html>
