@@ -220,7 +220,7 @@
 	if (key!=""){
 	firebase.database().ref('Travels/'+key).on('value',function(snapshot) {
 	document.getElementById("voyage").innerHTML="";
-		voyage = '<h3 style="padding-top:0;" align="center">'+snapshot.child("title").val()+'</h3> <h4 style="padding-top:0;" align="center">A partir de '+snapshot.child("price").val()+' DT</h4> <img src="'+snapshot.child("photo").val()+'"> <br><br> <br><br> <p>'+snapshot.child("description").val()+'</p>';
+		voyage = '<h3 style="padding-top:0;" align="center">'+snapshot.child("title").val()+'</h3> <h4 style="padding-top:0;" align="center">A partir de '+snapshot.child("price").val()+' DT</h4> <img src="'+snapshot.child("photo").val()+'" alt="" height="360" width="960"> <br><br> <br><br> <p>'+snapshot.child("description").val()+'</p>';
 		document.getElementById("voyage").innerHTML+=voyage;
 	});
 	}

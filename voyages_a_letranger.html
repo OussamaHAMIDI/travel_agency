@@ -105,7 +105,7 @@
 	firebase.database().ref('Travels').on('value',function(snapshot) {
 	document.getElementById("voyages").innerHTML="";
 	snapshot.forEach(function (childSnapshot) {
-		voyages = '<div class="grid_4"><div class="banner"><img src="'+childSnapshot.child('photo').val()+'" alt=""><div class="label"><div class="title">'+childSnapshot.child('title').val()+'</div><div class="price">from<span>'+childSnapshot.child('price').val()+'DT</span></div><a href="page_model.html?'+childSnapshot.key+'">LEARN MORE</a></div></div></div>';
+		voyages = '<div class="grid_4"><div class="banner"><img src="'+childSnapshot.child('photo').val()+'" alt="" height="364" width="300"><div class="label"><div class="title">'+childSnapshot.child('title').val()+'</div><div class="price">from<span>'+childSnapshot.child('price').val()+'DT</span></div><a href="page_model.html?'+childSnapshot.key+'">LEARN MORE</a></div></div></div>';
 		document.getElementById("voyages").innerHTML+=voyages;
 		});
 	});
