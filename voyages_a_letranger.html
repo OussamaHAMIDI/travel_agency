@@ -101,20 +101,11 @@
 		messagingSenderId: "549842225577"
 	  };
 	  firebase.initializeApp(config);
-  var voyages="";
- var dbRef = firebase.database().ref('Travels');
-	/*dbRef.on('value', function(snap){
-	 snap.forEach(function (childSnapshot) {
-		//voyages='<div class="properties-bottom"><div class="properties-img"><img src="'+childSnapshot.child("photo").val()+'" alt=""><div class="view-caption"><h4><span class="glyphicon glyphicon-map-marker"></span>'+ childSnapshot.child("address").val()+'</h4></div><div onClick="map('+childSnapshot.child("longitude").val()+','+childSnapshot.child("latitude").val()+')" class="w3ls-buy"><a href="#">Visit</a></div></div><div class="w3ls-text"><h5><a href="map.html">'+childSnapshot.child("name").val()+'</a></h5><h6>Rating : '+likeCount+'</h6><span id='+key+' onclick="like(this.id)" class="'+iconClass+'" style="margin-top:10px;"></span><span class="glyphicon glyphicon-share-alt" style="margin-top:10px;float:right"></span></div></div> ';
-		//document.getElementById("voyages").innerHTML+=voyages;
-		console.log(childSnapshot.val());	
-		});
-		
-	});*/
+	var voyages="";
 	firebase.database().ref('Travels').on('value',function(snapshot) {
 	document.getElementById("voyages").innerHTML="";
 	snapshot.forEach(function (childSnapshot) {
-		voyages = '<div class="grid_4"><div class="banner"><img src="'+childSnapshot.child('photo').val()+'" alt=""><div class="label"><div class="title">'+childSnapshot.child('title').val()+'</div><div class="price">from<span>'+childSnapshot.child('price').val()+'DT</span></div><a href="#">LEARN MORE</a></div></div></div>';
+		voyages = '<div class="grid_4"><div class="banner"><img src="'+childSnapshot.child('photo').val()+'" alt=""><div class="label"><div class="title">'+childSnapshot.child('title').val()+'</div><div class="price">from<span>'+childSnapshot.child('price').val()+'DT</span></div><a href="page_model.html?'+childSnapshot.key+'">LEARN MORE</a></div></div></div>';
 		document.getElementById("voyages").innerHTML+=voyages;
 		});
 	});

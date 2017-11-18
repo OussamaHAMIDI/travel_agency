@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -37,7 +36,7 @@
     }
     </style>
   </head>
-  <body>
+  <body onload="check()">
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
@@ -108,20 +107,20 @@
           </div>-->
           <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col">
             <h4 align="center">Ajouter un voyage</h4>
-			<form action="#">
+			
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<input class="mdl-textfield__input" type="text" id="titre">
 					<label class="mdl-textfield__label" for="titre">Titre...</label>
 				</div>
 				<br>
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="prix" required>
+					<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="prix">
 					<label class="mdl-textfield__label" for="prix">Prix...</label>
 					<span class="mdl-textfield__error">Input is not a number!</span>
 				</div>
 				<br>
 				 <div class="mdl-textfield mdl-js-textfield">
-					<textarea class="mdl-textfield__input" type="text" rows= "10" id="description" ></textarea>
+					<textarea class="mdl-textfield__input" type="text" rows= "10" id="description"></textarea>
 					<label class="mdl-textfield__label" for="description">Description...</label>
 				</div>
 				<br>
@@ -135,10 +134,13 @@
       </input>-->
 				<br>
 				<br>
-				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick="addTravel()">
-					AjouterVoyage
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick="addTravel()" id="addButton">
+					Ajouter Voyage
 				</button>
-			</form>
+				<br>
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="updateButton" disabled>
+					Confirmer
+				</button>
           </div>
           <div class="demo-cards mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
             <style>
@@ -163,7 +165,8 @@
                 <th>Modifier</th>
                 <th>Supprimer</th>
               </tr>
-              <tr>
+			  <tbody id="voyages"></tbody>
+              <!--<tr>
                 <td>test1</td>
                 <td>
                   <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--fab">
@@ -214,7 +217,7 @@
                     <i class="material-icons">delete</i>
                   </button>
                 </td>
-              </tr>
+              </tr>-->
             </table>
             <!--<div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
               <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
@@ -346,6 +349,8 @@
 			const prix = document.getElementById('prix');
 			const description = document.getElementById('description');
 			const image = document.getElementById('image');
+			const updateButton = document.getElementById('updateButton');
+			const addButton = document.getElementById('addButton');
 			var downloadL;
 
 
@@ -424,8 +429,7 @@
 			title:titre.value,
 			description:description.value,
 			price:prix.value,
-			photo:downloadL,
-
+			photo:downloadL
 			})
 
 
@@ -435,7 +439,48 @@
 			firebase.auth().signOut();
 
 			}
-
+			var voyages="";
+			firebase.database().ref('Travels').on('value',function(snapshot) {
+			document.getElementById("voyages").innerHTML="";
+			
+			snapshot.forEach(function (childSnapshot) {
+				voyages = '<tr><td>'+childSnapshot.child('title').val()+'</td><td><button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--fab" onclick="update(\'' + childSnapshot.key + '\',\'' + childSnapshot.child('title').val() + '\',\'' + childSnapshot.child('price').val() + '\',\'' + childSnapshot.child('description').val() + '\')"><i class="material-icons">mode_edit</i></button></td><td><button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--fab" onclick="remove(\'' + childSnapshot.key + '\')"><i class="material-icons">delete</i></button></td></tr>';
+				document.getElementById("voyages").innerHTML+=voyages;
+				});
+			});
+			function remove(key)
+			{
+				if (confirm("Voulez vous vraiment supprimer ce voyage?")==true)
+				firebase.database().ref('Travels').child(key).remove();
+			}
+			var updateKey="";
+			function update(key,title,price,desc){
+			if (confirm("Voulez vous vraiment modifier ce voyage?")==true)
+				{
+					titre.value=title;
+					prix.value=price;
+					description.value=desc;
+					updateButton.disabled = false;
+					addButton.disabled = true;
+					updateKey=key;
+					updateButton.addEventListener("click", function(event) {
+							firebase.database().ref('Travels').child(key).update({
+							userId:firebase.auth().currentUser.uid,
+							title:titre.value,
+							description:description.value,
+							price:prix.value
+							});
+							alert("voyage modifié avec succès");
+							updateKey="";
+							location.reload();
+					}, false);
+				}
+			
+			}
+			function modify(){
+			
+					
+			}
 	</script>
   </body>
 </html>
