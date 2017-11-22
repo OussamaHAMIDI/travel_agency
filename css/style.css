@@ -3,11 +3,7 @@
 @import "font-awesome.css";
 @import "superfish.css";
 
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400);
-@import url(//fonts.googleapis.com/css?family=Open+Sans:300);
-@import url(//fonts.googleapis.com/css?family=Open+Sans:600);
-@import url(//fonts.googleapis.com/css?family=PT+Sans+Narrow);
-
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 html {
 	width: 100%;
 
@@ -26,7 +22,7 @@ body {
 	min-width: 960px;
     background-color: #002141;
     color: #737272;
-    font: 14px/20px 'Open Sans', sans-serif;
+    font: 14px/20px 'Roboto', sans-serif;
 }
 
 .ic {
@@ -349,12 +345,14 @@ header h1 a img {
     font-size: 30px;
     margin-bottom: 14px;
     text-transform: uppercase;
+		text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 .banner .label .price span {
     display: block;
     font-size: 24px;
     padding-top: 3px;
+		text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 .banner a {
@@ -447,7 +445,7 @@ header h1 a img {
     color: #e5e5e5;
     font-size: 18px;
     line-height: 21px;
-    font-family: 'FontAwesome';
+    font-family: 'Roboto', sans-serif;
     bottom: 0;
 }
 .banners {
@@ -605,7 +603,7 @@ footer {
 	display: block;
     padding: 0px 0 60px;
     color: #a3afba;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .socials {
