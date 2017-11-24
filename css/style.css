@@ -3,7 +3,10 @@
 @import "font-awesome.css";
 @import "superfish.css";
 
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:300);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:600);
+@import url(//fonts.googleapis.com/css?family=PT+Sans+Narrow);
 html {
 	width: 100%;
 
@@ -22,7 +25,7 @@ body {
 	min-width: 960px;
     background-color: #002141;
     color: #737272;
-    font: 14px/20px 'Roboto', sans-serif;
+    font: 14px/20px 'Open Sans', sans-serif;
 }
 
 .ic {
@@ -445,7 +448,7 @@ header h1 a img {
     color: #e5e5e5;
     font-size: 18px;
     line-height: 21px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'FontAwesome';
     bottom: 0;
 }
 .banners {
@@ -603,7 +606,7 @@ footer {
 	display: block;
     padding: 0px 0 60px;
     color: #a3afba;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .socials {
