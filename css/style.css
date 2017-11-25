@@ -74,7 +74,7 @@ img {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
-	color: #3e454c;
+	color: #424e59;
     text-transform: uppercase;
 }
 
@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 h2 {
     font-size: 72px;
     line-height: 30px;
-    color: #f3aa29;
+    color: #3d5e7c;
     font-weight: 300;
     margin-bottom: 20px;
 }
